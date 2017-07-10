@@ -66,9 +66,9 @@ public class HomeController {
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
             model.addAttribute("imageurl", uploadResult.get("url"));
             String filename = uploadResult.get("public_id").toString() + "." + uploadResult.get("format").toString();
-            model.addAttribute("sizedimageurl", cloudc.createUrl(filename,100,150, "fit"));
+            model.addAttribute("sizedimageurl", cloudc.createUrl(filename,300,400, "scale"));
             image.setImgname(filename);
-            image.setImgsrc((String)  cloudc.createUrl(filename,100,150, "fit"));
+            image.setImgsrc((String)  cloudc.createUrl(filename,300,400, "scale"));
             imageRepository.save(image);
             model.addAttribute("imageList", imageRepository.findAll());
         } catch (IOException e){
@@ -132,7 +132,7 @@ public class HomeController {
         return "redirect:/viewmemes";
     }
 
-    @RequestMapping("/viewmemes")
+    @RequestMapping("/memes")
     public String viewMemes(Model model) {
         //Find all by username
         /*String username = SecurityContextHolder.getContext().getAuthentication().getName();

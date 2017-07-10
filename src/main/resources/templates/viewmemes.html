@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--<link rel="stylesheet" href="../static/memestyle.css"/>-->
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>View</title>
+
+    <style>
+
+        #container {
+            height: 400px;
+            width: 400px;
+            position: relative;
+        }
+        #image {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #bottom {
+            z-index: 100;
+            position: absolute;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            left: 150px;
+            top: 350px;
+        }
+        #top {
+            z-index: 100;
+            position: absolute;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            left: 150px;
+            bottom: 350px;
+        }
+        p {
+            color: black;
+            -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<br /><br />
+<h1>View Memes</h1>
+
+
+
+
+
+<div class = "row">
+    <th:block th:each = "meme: ${memeList}">
+        <div class= "col-md-3">
+            <div id="container">
+            <div id ="image"  th:utext="${meme.imageUrl}">
+
+            </div>
+            <p id= "top" th:text="${meme.top}">Top text</p>
+            <p id= "bottom" th:text="${meme.bottom}">Bottom text</p>
+
+            </div>
+        </div>
+    </th:block>
+</div>
+
+
+
+<!--<div id="container">
+
+    <img id="image" src="https://www.noao.edu/image_gallery/images/d4/androa.jpg" alt="test">Image</img>
+    <p id="top">
+        Top String Here
+    </p>
+    <p id="bottom">
+        Hello World!
+    </p>
+</div>-->
+<!--
+<a th:href="/meme_maker">Create</a>
+-->
+
+</body>
+</html>
