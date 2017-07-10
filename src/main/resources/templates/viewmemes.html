@@ -64,17 +64,19 @@
 <div class = "row">
     <th:block th:each = "meme: ${memeList}">
         <div class= "col-md-3">
+            <div th:text="${ 'memez_memez.herokuapp.com/showmemes/'+{meme.id} }">
+            </div>
             <div id="container">
-                <div id ="image"  th:utext="${meme.imageUrl}">
-                </div>
-                <div th:text="${ {memez_memez.herokuapp.com/showmemes/}+{meme.id} }">
+                <a th:href="@{'/showmeme/'+${meme.id}}"><div id ="image"  th:utext="${meme.imageUrl}">
+                </div></a>
+
 
                 </div>
             <p id= "top" th:text="${meme.top}">Top text</p>
             <p id= "bottom" th:text="${meme.bottom}">Bottom text</p>
 
             </div>
-        </div>
+
     </th:block>
 </div>
 
