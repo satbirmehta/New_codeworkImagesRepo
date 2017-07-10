@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org " xmlns:sec="www.thymeleaf.org/extras/spring-security">
 <head>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap 101 Template</title>
     <th:block th:replace="base :: head"></th:block>
 </head>
 <body>
-<br /><br />
-<th:block th:replace="base :: nav"></th:block>
-<h1>Spring Boot file upload example</h1>
-<form th:object="${image}" method="POST" action="/upload" enctype="multipart/form-data">
-    <label for ="file">Your Image</label>
-    <input type="file" id="file" name="file" /><br/><br/>
-    <label for="caption">Your Caption</label>
-    <input type = "text" id="caption" name = "caption"  th:field="*{caption}"/><br/>
-    <input type="submit" value="Submit" />
-</form>
-<div th:if="${message}">
-    <h2 th:text="${message}"/><br/><br/>
-</div>
-
-
-<div class = "row">
-    <th:block th:each = "image: ${imageList}">
-    <div class= "col-md-3">
-
-    <div th:utext="${image.imgsrc}" >
-
+<br/><br/>
+<th:block th:replace="base :: navbar"></th:block>
+<div class="container">
+    <h1>Spring Boot file upload example</h1>
+    <form th:object="${image}" method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file"/><br/><br/>
+        <input type="text" name="caption" th:field="*{caption}"/><br/>
+        <input type="submit" value="Submit"/>
+    </form>
+    <div th:if="${message}">
+        <h2 th:text="${message}"/><br/><br/>
     </div>
 
-    <p th:text = "${image.caption}">Caption</p>
+
+    <div class="row">
+        <th:block th:each="image: ${imageList}">
+            <div class="col-md-3">
+
+                <div th:utext="${image.imgsrc}">
+
+                </div>
+
+                <p th:text="${image.caption}">Caption</p>
+            </div>
+        </th:block>
     </div>
-</th:block>
+
 </div>
-
-
-
-
-
 
 
 </body>
