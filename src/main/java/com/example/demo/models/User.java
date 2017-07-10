@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
+@Table(name = "user_tb")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
