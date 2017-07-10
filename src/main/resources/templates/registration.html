@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html     xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="www.thymeleaf.org"
+          xmlns:sec="www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spring Security Example</title>
+    <th:block th:replace="base :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="base :: nav"></th:block>
+<div class="container">
+    <br /><br /><br />
+    <h4>New User Registration</h4>
+    <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post" id="userForm">
+        <div class="form-group">
+            <label for="select">Select User Type:</label>
+            <br/>
+            <select name="huge" class="selectpicker" data-style="btn-info btn-fill btn-block" form="userForm" th:field="*{roleName}" id="select">
+                <!--<option disabled selected> Choose city</option>-->
+
+                <option value="admin" th:text="${'Admin'}">Admin </option>
+                <option value="user" th:text="${'Job Seeker'}">User </option>
+
+
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">Email <mark><strong><span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span></strong></mark></label>
+            <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}" />
+        </div>
+        <div class="form-group">
+            <label for="username">Username <mark><strong><span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span></strong></mark></label>
+            <input type="text" class="form-control" id="username" placeholder="Username" th:field="*{username}" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password <mark><strong><span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span></strong></mark></label>
+            <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" />
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div><!-- /.container -->
+<th:block th:replace="base :: footlinks"></th:block>
+</body>
+</html>

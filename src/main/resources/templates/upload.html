@@ -11,9 +11,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap 101 Template</title>
+    <th:block th:replace="base :: head"></th:block>
 </head>
 <body>
 <br /><br />
+<th:block th:replace="base :: nav"></th:block>
 <h1>Spring Boot file upload example</h1>
 <form th:object="${image}" method="POST" action="/upload" enctype="multipart/form-data">
     <input type="file" name="file" /><br/><br/>
@@ -45,4 +47,5 @@
 
 
 </body>
+<th:block th:replace="base :: footlinks"></th:block>
 </html>
