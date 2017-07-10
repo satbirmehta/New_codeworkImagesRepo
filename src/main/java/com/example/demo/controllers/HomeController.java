@@ -121,15 +121,27 @@ public class HomeController {
         model.addAttribute("images", imageRepository.findAll());
         return "meme_maker";
     }
+    @RequestMapping("/makememe/{id}")
+    public String memeform(@PathVariable("id") int id, Model model)
+    {
+        Image img=imageRepository.findOne(id);
+        Meme meme=new Meme();
+        meme.setImageUrl(img.getImgsrc());
+        model.addAttribute("meme", meme);
 
-    @PostMapping("/newmeme")
+
+        return "meme_maker_maker";
+    }
+
+
+    @PostMapping("/new_meme")
     public String addMeme(@ModelAttribute Meme meme, Model model) {
         model.addAttribute("meme", meme);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Long id =  userRepository.findByUsername(username).getId();
         meme.setUserId(id.intValue());
         memeRepository.save(meme);
-        return "redirect:/viewmemes";
+        return "redirect:/memes";
     }
 
     @RequestMapping("/memes")
@@ -142,5 +154,13 @@ public class HomeController {
         //Find all
         model.addAttribute("memeList", memeRepository.findAll());
         return "viewmemes";
+    }
+    @RequestMapping("/showmeme/{id}")
+    public String showMeme(@PathVariable("id") long id, Model model)
+    {
+        Meme meme=memeRepository.findOne(id);
+        model.addAttribute("meme",meme);
+
+        return "memez";
     }
 }

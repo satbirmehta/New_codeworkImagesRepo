@@ -17,8 +17,8 @@
         <form th:object="${meme}" method="POST" action="/new_meme">
             <input th:field="*{top}" type="text" placeholder="Top Caption"/>
             <input th:field="*{bottom}" type="text" placeholder="Bottom Caption"/>
-            <input type="hidden" th:value="${meme.imgsrc}" name="imgURL"/>
-            <th:block th:utext="${img.imgsrc}"></th:block>
+            <input type="hidden" th:value="${meme.imageUrl}"  name="imageUrl"/>
+            <th:block th:utext="${meme.imageUrl}"></th:block>
             <input type="submit" value="Make the meme"/>
         </form>
 
