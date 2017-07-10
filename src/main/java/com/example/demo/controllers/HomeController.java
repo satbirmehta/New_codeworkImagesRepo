@@ -2,12 +2,14 @@ package com.example.demo.controllers;
 
 import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.configs.CloudinaryConfig;
-import com.example.demo.models.Image;
-import com.example.demo.models.User;
+import com.example.demo.models.*;
 import com.example.demo.repositories.ImageRepository;
+import com.example.demo.repositories.MemeRepository;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserService;
 import com.example.demo.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +33,12 @@ public class HomeController {
     private UserService userService;
 
     @Autowired
+    UserRepository userRepository;
+    @Autowired
     ImageRepository imageRepository;
+    @Autowired
+    MemeRepository memeRepository;
+
 
     @Autowired
     CloudinaryConfig cloudc;
@@ -108,4 +115,32 @@ public class HomeController {
         this.userValidator = userValidator;
     }
 
+    @GetMapping("/meme_maker")
+    public String memeMaker(Model model) {
+        model.addAttribute("meme", new Meme());
+        model.addAttribute("images", imageRepository.findAll());
+        return "meme_maker";
+    }
+
+    @PostMapping("/newmeme")
+    public String addMeme(@ModelAttribute Meme meme, Model model) {
+        model.addAttribute("meme", meme);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long id =  userRepository.findByUsername(username).getId();
+        meme.setUserId(id.intValue());
+        memeRepository.save(meme);
+        return "redirect:/viewmemes";
+    }
+
+    @RequestMapping("/viewmemes")
+    public String viewMemes(Model model) {
+        //Find all by username
+        /*String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Integer id =  userRepository.findByUsername(username).getId();
+        model.addAttribute("memeList", memeRepository.findAllByUserId(id.intValue()));
+        */
+        //Find all
+        model.addAttribute("memeList", memeRepository.findAll());
+        return "viewmemes";
+    }
 }
