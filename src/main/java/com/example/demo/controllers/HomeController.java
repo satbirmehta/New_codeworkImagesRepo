@@ -164,7 +164,7 @@ public class HomeController {
         model.addAttribute("memeList", memeRepository.findAll());
         return "viewmemes";
     }
-    @RequestMapping("/showmeme/{id}")
+    @RequestMapping("/showmemes/{id}")
     public String showMeme(@PathVariable("id") long id, Model model)
     {
         Meme meme=memeRepository.findOne(id);
@@ -182,7 +182,7 @@ public class HomeController {
                     .from(new InternetAddress("bot.orion.bot@gmail.com", "The MemeLord"))
                     .to(Lists.newArrayList(new InternetAddress(user.getEmail(),user.getUsername())))
                     .subject("Your Meme, Your Way")
-                    .body("You have created a new meme. Here is the link: memez-memez.herokuapp.com/showmeme/"+meme.getId())
+                    .body("You have created a new meme. Here is the link: memez-memez.herokuapp.com/showmemes/"+meme.getId())
                     .encoding("UTF-8").build();
             emailService.send(email);
         } catch (UnsupportedEncodingException e) {
