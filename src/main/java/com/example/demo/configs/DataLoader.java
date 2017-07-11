@@ -29,7 +29,7 @@ public class DataLoader implements CommandLineRunner{
 
     @Override
     public void run(String... strings) throws Exception {
-        if (roleRepository.findByRole("user")==null) {
+        if (roleRepository.findByRole("USER")==null) {
             System.out.println("Loading data . . .");
 
             roleRepository.save(new Role("USER"));
