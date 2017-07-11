@@ -14,32 +14,32 @@
 
     <style>
 
-        #container {
+        .container1 {
             height: 400px;
-            width: 400px;
+            width: 300px;
             position: relative;
         }
-        #image {
+        .image {
             position: absolute;
             left: 0;
             top: 0;
         }
-        #bottom {
+        .bottom {
             z-index: 100;
             position: absolute;
             color: black;
             font-size: 24px;
             font-weight: bold;
-            font-align:center;
+            text-align:center;
             top: 350px;
         }
-        #top {
+        .top {
             z-index: 100;
             position: absolute;
             color: black;
             font-size: 24px;
             font-weight: bold;
-            font-align:center;
+            text-align:center;
             bottom: 350px;
         }
         p {
@@ -47,6 +47,7 @@
             -webkit-text-fill-color: white; /* Will override color (regardless of order) */
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: black;
+            width :100% ;
         }
 
     </style>
@@ -67,14 +68,14 @@
         <div class= "col-md-3">
             <div th:text="${ 'memez-memez.herokuapp.com/showmemes/'+{meme.id} }">
             </div>
-            <div id="container">
-                <a th:href="@{'/showmemes/'+${meme.id}}"><div id ="image"  th:utext="${meme.imageUrl}">
+            <div class="container1">
+                <a th:href="@{'/showmemes/'+${meme.id}}"><div class="image"  th:utext="${meme.imageUrl}">
                 </div></a>
 
 
                 </div>
-            <p id= "top" th:text="${meme.top}">Top text</p>
-            <p id= "bottom" th:text="${meme.bottom}">Bottom text</p>
+            <p class = "top" th:text="${meme.top}">Top text</p>
+            <p class = "bottom" th:text="${meme.bottom}">Bottom text</p>
 
             </div>
 
