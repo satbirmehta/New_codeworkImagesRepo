@@ -106,6 +106,11 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1206-jdbc42</version>
 		</dependency>
+		<dependency>
+			<groupId>it.ozimov</groupId>
+			<artifactId>spring-boot-email-core</artifactId>
+			<version>0.6.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
