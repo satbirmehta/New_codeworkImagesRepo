@@ -16,12 +16,14 @@
     <div class="container">
 
         <form th:object="${meme}" method="POST" action="/new_meme">
-            <input th:field="*{top}" type="text" placeholder="Top Caption"/>
+            <label for="top">Top Caption<mark><strong><span th:if="${#fields.hasErrors('top')}" th:errors="*{top}">Top Error</span></strong></mark></label>
+            <input th:field="*{top}" type="text" placeholder="Top Caption" id="top"/>
             <br/>
             <input type="hidden" th:value="${meme.imageUrl}"  name="imageUrl"/>
             <th:block th:utext="${meme.imageUrl}"></th:block>
             <br/>
-            <input th:field="*{bottom}" type="text" placeholder="Bottom Caption"/>
+            <label for="bottom">Bottom Caption<mark><strong><span th:if="${#fields.hasErrors('bottom')}" th:errors="*{bottom}">Bottom Error</span></strong></mark></label>
+            <input th:field="*{bottom}" type="text" placeholder="Bottom Caption" id="bottom"/>
             <br/>
             <input type="submit" value="Make the meme"/>
         </form>

@@ -141,8 +141,12 @@ public class HomeController {
 
 
     @PostMapping("/new_meme")
-    public String addMeme(@ModelAttribute Meme meme, Model model) {
+    public String addMeme(@Valid @ModelAttribute("meme")Meme meme, BindingResult result, Model model) {
         model.addAttribute("meme", meme);
+        userValidator.validateCaptions(meme, result);
+        if (result.hasErrors()) {
+            return "meme_maker_maker";
+        }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user=userRepository.findByUsername(username);
         Long id = user.getId();

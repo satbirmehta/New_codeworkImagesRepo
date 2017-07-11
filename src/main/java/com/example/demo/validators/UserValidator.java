@@ -3,6 +3,7 @@ package com.example.demo.validators;
 /**
  * Created by student on 7/5/17.
  */
+import com.example.demo.models.Meme;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,18 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "user.username.duplicate");
         }
     }
+    public void validateCaptions(Object target, Errors errors)
+    {
+        Meme meme= (Meme) target;
+        String top=meme.getTop();
+        String bottom=meme.getBottom();
+        if(top.length() > 50){
+            errors.rejectValue("top","meme.top.tooLong");
+        }
+        if(bottom.length() > 50){
+            errors.rejectValue("bottom","meme.bottom.tooLong");
+        }
+
+    }
+
 }
