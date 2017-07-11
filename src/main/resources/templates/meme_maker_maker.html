@@ -8,17 +8,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Meme Maker</title>
+    <th:block th:replace="base :: head"></th:block>
 </head>
 <body>
-<br/><br/><br/><br/>
+<th:block th:replace="base :: navbar"></th:block><br/><br/><br/><br/>
 
     <div class="container">
 
         <form th:object="${meme}" method="POST" action="/new_meme">
             <input th:field="*{top}" type="text" placeholder="Top Caption"/>
-            <input th:field="*{bottom}" type="text" placeholder="Bottom Caption"/>
+            <br/>
             <input type="hidden" th:value="${meme.imageUrl}"  name="imageUrl"/>
             <th:block th:utext="${meme.imageUrl}"></th:block>
+            <br/>
+            <input th:field="*{bottom}" type="text" placeholder="Bottom Caption"/>
+            <br/>
             <input type="submit" value="Make the meme"/>
         </form>
 
