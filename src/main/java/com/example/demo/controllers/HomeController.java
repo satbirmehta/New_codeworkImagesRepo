@@ -181,7 +181,7 @@ public class HomeController {
             email = DefaultEmail.builder()
                     .from(new InternetAddress("bot.orion.bot@gmail.com", "The MemeLord"))
                     .to(Lists.newArrayList(new InternetAddress(user.getEmail(),user.getUsername())))
-                    .subject("New Image: "+meme.getId())
+                    .subject("Your Meme, Your Way")
                     .body("You have created a new meme. Here is the link: memez-memez.herokuapp.com/showmemes/"+meme.getId())
                     .encoding("UTF-8").build();
             emailService.send(email);
