@@ -47,9 +47,11 @@
             -webkit-text-fill-color: white; /* Will override color (regardless of order) */
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: black;
-            width :100% ;
+            width :300px;
         }
-
+        .col-md-3{
+            text-align: center;
+        }
     </style>
 
 
@@ -62,7 +64,7 @@
 
 
 
-
+<div class="container">
 <div class = "row">
     <th:block th:each = "meme: ${memeList}">
         <div class= "col-md-3">
@@ -97,6 +99,6 @@
 <!--
 <a th:href="/meme_maker">Create</a>
 -->
-
+</div>
 </body>
 </html>
