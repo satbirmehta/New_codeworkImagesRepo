@@ -183,7 +183,7 @@ public class HomeController {
         final Email email;
         try {
             email = DefaultEmail.builder()
-                    .from(new InternetAddress("bot.orion.bot@gmail.com", "The MemeLord"))
+                    .from(new InternetAddress("dolly9979@gmail.com", "The MemeLord"))
                     .to(Lists.newArrayList(new InternetAddress(user.getEmail(),user.getUsername())))
                     .subject("Your Meme, Your Way")
                     .body("You have created a new meme. Here is the link: memez-memez.herokuapp.com/showmemes/"+meme.getId())
